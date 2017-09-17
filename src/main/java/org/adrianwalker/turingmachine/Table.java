@@ -1,17 +1,53 @@
 package org.adrianwalker.turingmachine;
 
-import static java.lang.String.format;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public final class Table {
 
-  private static final String SEPARATOR = ":";
-  private static final String VALUE_FORMAT = "%s" + SEPARATOR + "%s" + SEPARATOR + "%s";
-  private static final String KEY_FORMAT = "%s" + SEPARATOR + "%s";
+  public static final class Entry {
 
-  private final Map<String, String> table;
+    private final String state;
+    private final String symbol;
+    private final String writeSymbol;
+    private final String moveTape;
+    private final String nextState;
+
+    public Entry(
+            final String state, final String symbol,
+            final String writeSymbol, final String moveTape, final String nextState) {
+
+      this.state = state;
+      this.symbol = symbol;
+      this.writeSymbol = writeSymbol;
+      this.moveTape = moveTape;
+      this.nextState = nextState;
+    }
+
+    public String getState() {
+      return state;
+    }
+
+    public String getSymbol() {
+      return symbol;
+    }
+
+    public String getWriteSymbol() {
+      return writeSymbol;
+    }
+
+    public String getMoveTape() {
+      return moveTape;
+    }
+
+    public String getNextState() {
+      return nextState;
+    }
+  }
+
+  private static final String SEPARATOR = "_";
+
+  private final Map<String, Entry> table;
 
   public Table() {
 
@@ -23,12 +59,12 @@ public final class Table {
           final String writeSymbol, final String moveTape, final String nextState) {
 
     table.put(
-            format(KEY_FORMAT, state, symbol),
-            format(VALUE_FORMAT, writeSymbol, moveTape, nextState));
+            state + SEPARATOR + symbol,
+            new Entry(state, symbol, writeSymbol, moveTape, nextState));
   }
 
-  public String[] get(final String state, final String symbol) {
+  public Entry get(final String state, final String symbol) {
 
-    return table.get(format(KEY_FORMAT, state, symbol)).split(SEPARATOR);
+    return table.get(state + SEPARATOR + symbol);
   }
 }

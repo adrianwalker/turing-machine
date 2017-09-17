@@ -1,5 +1,7 @@
 package org.adrianwalker.turingmachine;
 
+import org.adrianwalker.turingmachine.Table.Entry;
+
 public final class TurningMachine {
 
   private final Head head;
@@ -24,10 +26,10 @@ public final class TurningMachine {
       String state = stateRegister.getState();
       String symbol = head.read();
 
-      String[] triple = table.get(state, symbol);
-      head.write(triple[0]);
-      head.move(triple[1]);
-      stateRegister.setState(triple[2]);
+      Entry entry = table.get(state, symbol);
+      head.write(entry.getWriteSymbol());
+      head.move(entry.getMoveTape());
+      stateRegister.setState(entry.getNextState());
     }
 
     return steps;
