@@ -2,13 +2,13 @@ package org.adrianwalker.turingmachine;
 
 import org.adrianwalker.turingmachine.Table.Entry;
 
-public final class TurningMachine {
+public final class TuringMachine {
 
   private final Head head;
   private final StateRegister stateRegister;
   private final Table table;
 
-  public TurningMachine(final Head head, final StateRegister stateRegister, final Table table) {
+  public TuringMachine(final Head head, final StateRegister stateRegister, final Table table) {
 
     this.head = head;
     this.stateRegister = stateRegister;

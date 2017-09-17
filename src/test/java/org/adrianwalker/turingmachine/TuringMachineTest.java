@@ -4,7 +4,7 @@ import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-public final class TurningMachineTest {
+public final class TuringMachineTest {
 
   private static final String BLANK = "0";
   private static final String MOVE_LEFT = "L";
@@ -28,7 +28,7 @@ public final class TurningMachineTest {
     table.put("C", "0", "1", "L", "B");
     table.put("C", "1", "1", "N", "H");
 
-    TurningMachine machine = new TurningMachine(head, stateRegister, table);
+    TuringMachine machine = new TuringMachine(head, stateRegister, table);
     long steps = machine.execute();
 
     assertEquals(13, steps);
@@ -56,7 +56,7 @@ public final class TurningMachineTest {
     table.put("E", "0", "1", "R", "A");
     table.put("E", "1", "1", "L", "E");
 
-    TurningMachine machine = new TurningMachine(head, stateRegister, table);
+    TuringMachine machine = new TuringMachine(head, stateRegister, table);
     long steps = machine.execute();
 
     assertEquals(28, steps);
